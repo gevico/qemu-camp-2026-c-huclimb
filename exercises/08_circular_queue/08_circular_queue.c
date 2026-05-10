@@ -18,7 +18,7 @@ void initQueue(Queue* que)
 {
     que->count = 0;
     que->head = 0;
-    que->tail = 0；
+    que->tail = 0;
 }
 
 // 判断队列是否为空

@@ -16,7 +16,7 @@ int n;
 
 int binary_search(const char *target_name) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+
     int left = 0;
     int right = n - 1;
     int mid = 0;

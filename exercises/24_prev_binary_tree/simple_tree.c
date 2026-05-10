@@ -102,7 +102,7 @@ TreeNode* build_tree_by_level(int *level_order, int size) {
         TreeNode* oldnode = dequeue(q);
         if(i < size && INT_MIN != level_order[i])
         {
-            TreeNode*  node = malloc(TreeNode);
+            TreeNode*  node = malloc(sizeof(TreeNode));
             node->val = level_order[i];
             node->left = NULL;
             node->right = NULL;

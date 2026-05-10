@@ -5,7 +5,7 @@ int main() {
     char destination[101];
     
 	// TODO: 在这里添加你的代码
-    // I AM NOT DONE
+
     char *tmp = source;
     char *dst = destination;
     int max_len = sizeof(destination) - 1;  // 预留结束符位置
