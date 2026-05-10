@@ -87,9 +87,9 @@ static size_t hash_k(const char *s, size_t m, int k) {
 static void bloom_add(Bloom *bf, const char *s) {
     // TODO: 在这里添加你的代码
     //  
-    size_t hash_1 = hash_k(s, bf.m, 1);
-    size_t hash_2 = hash_k(s, bf.m, 2);
-    size_t hash_3 = hash_k(s, bf.m, 3);
+    size_t hash_1 = hash_k(s, bf->m, 1);
+    size_t hash_2 = hash_k(s, bf->m, 2);
+    size_t hash_3 = hash_k(s, bf->m, 3);
 
     set_bit(bf->bits, hash_1);
     set_bit(bf->bits, hash_2);

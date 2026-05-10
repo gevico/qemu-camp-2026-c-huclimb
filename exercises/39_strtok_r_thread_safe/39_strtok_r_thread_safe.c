@@ -27,7 +27,7 @@ static int is_delim(char c, const char *delim) {
 char *strtok_r(char *str, const char *delim, char **saveptr) {
     // TODO: 在这里添加你的代码
     char *token_start;
-    if (NULL = str)
+    if (NULL == str)
     {
         str = *saveptr;
     }
@@ -58,7 +58,7 @@ char *strtok_r(char *str, const char *delim, char **saveptr) {
 
     if(*str != '\0')
     {
-        *str=='\0';
+        *str='\0';
         *saveptr = str + 1;
     }
     else
@@ -85,32 +85,31 @@ char *strtok_r_2(char *str, const char *delim, char **saveptr)
         return NULL;
     }
 
-    while(*ptr != '\0' && is_delim(*ptr, delim))
+    while(*str != '\0' && is_delim(*str, delim))
     {
-        ptr++;
+        str++;
     }
 
-    if (*ptr=='\0')
+    if (*str=='\0')
     {
         *saveptr = NULL;
         return NULL;
     }
 
-    while(*ptr != '\0' && !is_delim(*ptr, delim))
+    while(*str != '\0' && !is_delim(*str, delim))
     {
-        ptr++;
+        str++;
     }
 
-    if(*ptr !='\0')
+    if(*str !='\0')
     {
-        *ptr = '\0';
-        *saveptr = ptr +1;
+        *str = '\0';
+        *saveptr = str +1;
     }
     else
     {
-        *saveptr = ptr;
+        *saveptr = str;
     }
-
 
     return token_start;
 }
