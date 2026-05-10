@@ -107,7 +107,7 @@ static void list_remove(LRUCache* c, LRUNode* node) {
         ///< 分两种情况，找到是头节点和不是头节点
         if (*prev_next != cur)
         {
-            *prev_next->next = cur->next;
+            (*prev_next)->next = cur->next;
         }
         else
         {
@@ -142,7 +142,6 @@ static LRUNode* list_pop_tail(LRUCache* c) {
 
     //< 删除链表尾部的元素
     
-
     LRUNode *node = c->tail;
     c->tail = node->prev;
     node->prev->next = NULL;
@@ -198,8 +197,6 @@ static LRUCache* lru_create(int capacity) {
 
     node->key = -1;
     
-
-
     c->head = node;
     c->tail = node;
 
