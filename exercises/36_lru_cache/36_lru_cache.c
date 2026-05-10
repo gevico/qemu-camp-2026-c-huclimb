@@ -34,14 +34,14 @@ typedef struct {
 
 static unsigned hash_int(int key) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    //   
 
     return key%PRIME;
 }
 
 static HashEntry* hash_find(LRUCache* c, int key, HashEntry*** pprev_next) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    //   
     unsigned int h = hash_int(key) % c-> bucket_count;
     HashEntry* cur = c->buckets[h];
     *pprev_next = &c->buckets[h];
@@ -62,7 +62,7 @@ static HashEntry* hash_find(LRUCache* c, int key, HashEntry*** pprev_next) {
 
 static void list_add_to_head(LRUCache* c, LRUNode* node) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    //   
     ///< Node key
     node->next = c->head->next;
     node->prev = c->head;
@@ -80,7 +80,7 @@ static void list_add_to_head(LRUCache* c, LRUNode* node) {
 
 static void list_remove(LRUCache* c, LRUNode* node) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    //   
 
     ///< 只做内存回收，容量由调用者维护
     int key = node->key;
@@ -119,7 +119,7 @@ static void list_remove(LRUCache* c, LRUNode* node) {
 
 static void list_move_to_head(LRUCache* c, LRUNode* node) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    //   
     ///< 只把当前节点移动至头部，不做容量维护，容量由外部调用的判断
     if (c->head->next == node || node==c->tail && node == c->head) 
     {
@@ -138,7 +138,7 @@ static void list_move_to_head(LRUCache* c, LRUNode* node) {
 
 static LRUNode* list_pop_tail(LRUCache* c) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    //   
 
     //< 删除链表尾部的元素
     
@@ -178,7 +178,7 @@ static LRUNode* list_pop_tail(LRUCache* c) {
 /* LRU 接口实现 */
 static LRUCache* lru_create(int capacity) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    //   
     // 1、申请 LRUCache内存
     LRUCache *c = cmalloc(1, sizeof(LRUCache));
     if (NULL == c)
@@ -220,7 +220,7 @@ static LRUCache* lru_create(int capacity) {
 
 static void lru_free(LRUCache* c) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    //   
 
     LRUNode *p = c->head;
     while(p)
@@ -250,7 +250,7 @@ static void lru_free(LRUCache* c) {
 
 static int lru_get(LRUCache* c, int key, int* out_value) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    //   
         // 在哈希表中查找key
     HashEntry** prev_next;
     HashEntry* entry = hash_find(c, key, &prev_next);
@@ -274,7 +274,7 @@ static int lru_get(LRUCache* c, int key, int* out_value) {
 
 static void lru_put(LRUCache* c, int key, int value) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    //   
     // 检查key是否已存在
     HashEntry** prev_next;
     HashEntry* entry = hash_find(c, key, &prev_next);

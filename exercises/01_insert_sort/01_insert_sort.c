@@ -8,24 +8,6 @@ typedef struct {
 } Student;
 
 void insertion_sort(Student students[], int n) {
-    // TODO: 在这里添加你的代码
-    ///< 冒泡排序
-    /*
-    Student tmpStu; // 交换数据
-    for (int i = n; i > 1; i--)
-    {
-        for (int j = 0; j < i - 1; j++)
-        {
-            if (students[j].score > students[j + 1].score)
-            {
-                tmpStu = students[j];
-                students[j] = students[j + 1];
-                students[j + 1] = tmpStu;
-            }
-        }
-    }*/
-    ///< 插入排序
-    // I AM NOT DONE
     for (int i = 1; i < n; i++) {
         Student key = students[i];  // 当前待插入的元素
         int j = i - 1;

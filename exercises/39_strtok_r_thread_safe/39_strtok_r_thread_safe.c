@@ -11,7 +11,6 @@
 /* 判断字符 c 是否在分隔符集合 delim 中 */
 static int is_delim(char c, const char *delim) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
     while(*delim != '\0')
     {
         if (c == *delim)

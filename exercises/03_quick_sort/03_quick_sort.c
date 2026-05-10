@@ -35,7 +35,6 @@ int partition(int left, int right) {
 
 void quick_sort(int left, int right) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
     if (left < right) {
         int pivot_index = partition(left, right);  // 一趟排序，确定基准位置
         

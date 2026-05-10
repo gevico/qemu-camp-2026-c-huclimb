@@ -21,7 +21,6 @@ typedef struct {
 
 static int rb_init(ring_buffer_t *rb, size_t capacity) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
 
     rb->buf = calloc(capacity, sizeof(int));
     if (NULL == rb->buf)
