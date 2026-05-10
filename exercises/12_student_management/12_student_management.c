@@ -20,6 +20,9 @@ int main() {
     for (int i = 0; i < 3; i++) 
     {
 	    // TODO: 在这里添加你的代码
+        scanf("%s", students[i].id);
+        scanf("%s", students[i].name);
+        scanf("%d", students[i].age);
         // I AM NOT DONE
     }
     fclose(file);

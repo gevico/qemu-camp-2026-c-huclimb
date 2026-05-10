@@ -22,23 +22,73 @@ typedef struct {
 static int rb_init(ring_buffer_t *rb, size_t capacity) {
     // TODO: 在这里添加你的代码
     // I AM NOT DONE
+
+    rb->buf = calloc(capacity, sizeof(int));
+    if (NULL == rb->buf)
+    {
+        return -1;
+    }
+
+    rb->capacity = capacity;
+    rb->head = 0;
+    rb->tail = 0;
+    rb->count = 0;
+
+    pthread_mutex_init(&rb->mtx, NULL); 
+    pthread_cond_init(&rb->not_full, NULL);
+    pthread_cond_init(&rb->not_empty, NULL);
+
+    return 0;
 }
 
 static void rb_destroy(ring_buffer_t *rb) {
     // TODO: 在这里添加你的代码
     // I AM NOT DONE
+    pthread_cond_destroy(&rb->not_full);
+    pthread_cond_destroy(&rb->not_empty);
+    pthread_mutex_destroy(&rb->mtx); 
+    free(rb->buf);
 }
 
 /* 入队：满则等待 not_full */
 static void rb_push(ring_buffer_t *rb, int val) {
     // TODO: 在这里添加你的代码
     // I AM NOT DONE
+    pthread_mutex_lock(&rb->mtx);
+
+    while(rb->count == rb->capacity)
+    {
+        pthread_cond_wait(&rb->not_full, &rb->mtx);
+    }
+
+    rb->buf[rb->tail] = val;
+    rb->tail = (rb->tail + 1) % rb->capacity;
+    rb->count++;
+
+    pthread_cond_signal(&rb->not_empty);
+
+    pthread_mutex_unlock(&rb->mtx);
 }
 
 /* 出队：空则等待 not_empty */
 static int rb_pop(ring_buffer_t *rb, int *out) {
     // TODO: 在这里添加你的代码
     // I AM NOT DONE
+    pthread_mutex_lock(&rb->mtx);
+
+    while (rb->count == 0)
+    {
+        pthread_cond_wait(&rb->not_empty, &rb->mtx);
+    }
+
+    *out = rb->buf[rb->head];
+    rb->head = (rb->head + 1) % rb->capacity;
+    rb->count--;
+
+    pthread_cond_signal(&rb->not_full);
+    pthread_mutex_unlock(&rb->mtx);
+
+    return 0;
 }
 
 typedef struct {
@@ -55,11 +105,29 @@ typedef struct {
 static void *producer(void *arg) {
     // TODO: 在这里添加你的代码
     // I AM NOT DONE
+    producer_arg_t *p = (producer_arg_t *)arg;
+    ring_buffer_t *rb = p->rb;
+    int *data = p->data;
+    int n = p->n;
+    for (int i = 0; i<n ; i++)
+    {
+        rb_push(rb, data[i]);
+    }
+    return NULL;
 }
 
 static void *consumer(void *arg) {
     // TODO: 在这里添加你的代码
     // I AM NOT DONE
+    consumer_arg_t *c = (consumer_arg_t *)arg;
+    ring_buffer_t *rb = c->rb;
+    int n = c->n;
+    int data;
+    for (int i = 0; i<n ; i++)
+    {
+        rb_pop(rb, &data);
+    }
+    return NULL;
 }
 
 int main(void) {
