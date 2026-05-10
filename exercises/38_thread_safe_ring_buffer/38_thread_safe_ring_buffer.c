@@ -52,7 +52,6 @@ static void rb_destroy(ring_buffer_t *rb) {
 /* 入队：满则等待 not_full */
 static void rb_push(ring_buffer_t *rb, int val) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
     pthread_mutex_lock(&rb->mtx);
 
     while(rb->count == rb->capacity)
@@ -72,7 +71,6 @@ static void rb_push(ring_buffer_t *rb, int val) {
 /* 出队：空则等待 not_empty */
 static int rb_pop(ring_buffer_t *rb, int *out) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
     pthread_mutex_lock(&rb->mtx);
 
     while (rb->count == 0)
@@ -103,7 +101,7 @@ typedef struct {
 
 static void *producer(void *arg) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+
     producer_arg_t *p = (producer_arg_t *)arg;
     ring_buffer_t *rb = p->rb;
     int *data = p->data;
@@ -117,7 +115,6 @@ static void *producer(void *arg) {
 
 static void *consumer(void *arg) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
     consumer_arg_t *c = (consumer_arg_t *)arg;
     ring_buffer_t *rb = c->rb;
     int n = c->n;

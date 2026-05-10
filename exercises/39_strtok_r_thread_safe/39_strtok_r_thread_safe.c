@@ -26,7 +26,6 @@ static int is_delim(char c, const char *delim) {
 /* 线程安全版本：通过 saveptr 维护调用状态，不使用静态变量 */
 char *strtok_r(char *str, const char *delim, char **saveptr) {
     // TODO: 在这里添加你的代码
-    // I AM NOT DONE
     char *token_start;
     if (NULL = str)
     {

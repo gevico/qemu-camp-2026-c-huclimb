@@ -12,7 +12,7 @@
 static void set_bit(unsigned char* bitmap, size_t bit_index) {
     // TODO: 在这里添加你的代码
     //   
-    bitmap[bit_index / 8] |= 1 << (bit % 8) ;
+    bitmap[bit_index / 8] |= 1 << (bit_index % 8) ;
     
 }
 
@@ -20,7 +20,7 @@ static void set_bit(unsigned char* bitmap, size_t bit_index) {
 static int test_bit(const unsigned char* bitmap, size_t bit_index) {
     // TODO: 在这里添加你的代码
     //   
-    return 0 != (bitmap[bit_index / 8] & 1 << (bit % 8));
+    return 0 != (bitmap[bit_index / 8] & 1 << (bit_index % 8));
 }
 
 int main(void) {

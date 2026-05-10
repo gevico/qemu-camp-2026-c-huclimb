@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <math.h>
 /*
  * 16 LRU 缓存淘汰算法（哈希表 + 双向链表）
  *  - put(k,v)、get(k) 均为 O(1)
@@ -107,7 +107,7 @@ static void list_remove(LRUCache* c, LRUNode* node) {
         ///< 分两种情况，找到是头节点和不是头节点
         if (*prev_next != cur)
         {
-            prev_next->next = cur->next;
+            *prev_next->next = cur->next;
         }
         else
         {
@@ -121,7 +121,7 @@ static void list_move_to_head(LRUCache* c, LRUNode* node) {
     // TODO: 在这里添加你的代码
     //   
     ///< 只把当前节点移动至头部，不做容量维护，容量由外部调用的判断
-    if (c->head->next == node || node==c->tail && node == c->head) 
+    if (c->head->next == node || (node==c->tail && node == c->head)) 
     {
         return;
     }
@@ -147,7 +147,7 @@ static LRUNode* list_pop_tail(LRUCache* c) {
     c->tail = node->prev;
     node->prev->next = NULL;
 
-    node->pre = NULL;
+    node->prev = NULL;
     node->next = NULL;
     
     c->size--;
@@ -180,7 +180,7 @@ static LRUCache* lru_create(int capacity) {
     // TODO: 在这里添加你的代码
     //   
     // 1、申请 LRUCache内存
-    LRUCache *c = cmalloc(1, sizeof(LRUCache));
+    LRUCache *c = calloc(1, sizeof(LRUCache));
     if (NULL == c)
     {
         return NULL;
@@ -189,7 +189,7 @@ static LRUCache* lru_create(int capacity) {
 
     
     // 2、申请一个空节点作为头节点
-    LRUNode *node = cmalloc(1, sizeof(LRUNode));
+    LRUNode *node = calloc(1, sizeof(LRUNode));
     if (NULL == node)
     {
         free(c);
@@ -207,7 +207,7 @@ static LRUCache* lru_create(int capacity) {
    
     //< 申请  HashEntry** buckets;的内存
 
-    HashEntry** buckets = cmalloc(c->bucket_count, sizeof(HashEntry*));
+    HashEntry** buckets = calloc(c->bucket_count, sizeof(HashEntry*));
     if (NULL == buckets)
     {
         free(node);
